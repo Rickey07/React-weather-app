@@ -5,7 +5,7 @@ import { useCityContext } from "../contexts/Citycontext";
 export default function Weathercard() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const { city, data, error } = useCityContext();
+  const { data } = useCityContext();
   const options = {
     weekday: "long",
     year: "numeric",
@@ -44,18 +44,41 @@ export default function Weathercard() {
         <span className="time">{time}</span>
       </div>
       <div className="text-light text-center p-4 weather-div w-100">
-        {data?<h2>City Not Found</h2>:<h1>City Found</h1>}
-        <div>
-          <h4>{data === null ? "Please Enter a City Name" : data.name + `,${data.sys.country}`}</h4>
-        </div>
-        <div>
-          <h1>
-            {data === null ? data : Math.ceil(data.main.temp - 273) + `*C`}
-            <span> {data === null ? data : data.weather[0].main}</span>
-          </h1>
-        </div>
+        {data === null ? (
+          console.log("")
+        ) : Object.values(data).includes("404") ? (
+          <h1>City Not found :(</h1>
+        ) : (
+          <>
+            <div>
+              <h4>
+                {data === null
+                  ? "Please Enter a City Name"
+                  : data.name + `,${data.sys.country}`}
+              </h4>
+            </div>
+            <div>
+              <h1>
+                {data === null ? data : Math.ceil(data.main.temp - 273) + `*C`}
+                <span>
+                  {" "}
+                  {data === null ? (
+                    data
+                  ) : (
+                    <>
+                      <img
+                        src={`https://openweathermap.org/img/wn/${data.weather[0].icon}.png`}
+                        alt={data.weather[0].icon}
+                      />
+                      <span>{data.weather[0].description}</span>
+                    </>
+                  )}
+                </span>
+              </h1>
+            </div>
+          </>
+        )}
       </div>
-        
     </Container>
   );
 }

@@ -1,9 +1,9 @@
-import React, { useState , useEffect } from 'react'
+import React from 'react'
 import { Form , Container , Button } from 'react-bootstrap'
 import { useCityContext } from '../contexts/Citycontext';
 
 export default function Searchform() {
-  const {city,setCity,setData,setError} = useCityContext();
+  const {city,setCity,setData} = useCityContext();
 
 
   const fetchData = async () => {
@@ -19,7 +19,7 @@ export default function Searchform() {
 
   return (
     <Container>
-      <Form className='button-form' expand='lg' >
+      <Form className='button-form mt-4' expand='lg'>
         <Form.Control type="text" className='input-bg' placeholder='Enter city name' value={city} onChange={(e) => setCity(e.target.value)}/>
         <Button variant='outline-success' className='button-inside-form' onClick={fetchData} size='sm'>Search</Button>
       </Form>

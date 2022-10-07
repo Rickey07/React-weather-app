@@ -1,12 +1,12 @@
-import React from 'react'
-import {Navbar,Nav, Container} from 'react-bootstrap';
+import React from "react";
+import { Navbar, Container } from "react-bootstrap";
 
 export default function Header() {
   return (
-    <Navbar className='navbar' expand='sm'>
+    <Navbar className="navbar" expand="sm">
       <Container>
-        <Navbar.Brand href="#home">Weather App</Navbar.Brand>
+        <Navbar.Brand href="#home">Weatherify</Navbar.Brand>
       </Container>
     </Navbar>
-  )
+  );
 }
