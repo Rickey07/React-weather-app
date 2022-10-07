@@ -6,16 +6,6 @@ export default function Weathercard() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const { data } = useCityContext();
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const getCurrentDate = () => {
-    let date = new Date();
-    setDate(date.toLocaleDateString("en-us", options));
-  };
 
   const getCurrentTime = () => {
     let date = new Date();
@@ -32,11 +22,24 @@ export default function Weathercard() {
   };
 
   useEffect(() => {
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const getCurrentDate = () => {
+      let date = new Date();
+      setDate(date.toLocaleDateString("en-us", options));
+    };
+
     getCurrentDate();
+  }, []);
+  useEffect(() => {
     setTimeout(() => {
       getCurrentTime();
     }, 1000);
-  }, [time, date]);
+  }, [time]);
   return (
     <Container className="d-flex p-4 flex-column justify-content-center align-items-center">
       <div className="time-date-div p-4 text-light w-100">
