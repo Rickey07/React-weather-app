@@ -4,6 +4,7 @@ import Footer from "./Components/Footer";
 import Searchform from "./Components/Searchform";
 import Weathercard from "./Components/Weathercard";
 import { CityContextProvider } from "./contexts/Citycontext";
+import {Container} from 'react-bootstrap'
 
 function App() {
   return (
@@ -11,8 +12,10 @@ function App() {
       <div className="App">
         <CityContextProvider>
           <Header />
-          <Searchform />
-          <Weathercard />
+          <Container className="d-flex flex-column justify-content-center" style={{minHeight:"84vh"}}>
+            <Searchform />
+            <Weathercard />
+          </Container>
           <Footer />
         </CityContextProvider>
       </div>
